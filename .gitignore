@@ -1,3 +1,6 @@
+# C++ Intermediary Files
+*.o
+*.d
 
 # Editor directories and files
 .vscode
