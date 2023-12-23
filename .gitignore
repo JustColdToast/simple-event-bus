@@ -2,6 +2,12 @@
 *.o
 *.d
 
+# Build Directory
+build
+
+# Executable
+simple-event-bus
+
 # Editor directories and files
 .vscode
 .idea

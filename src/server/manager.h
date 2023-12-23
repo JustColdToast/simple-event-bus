@@ -9,6 +9,7 @@
 
 class MessageManager {
     int _maxCapacity;
+    typedef std::vector<std::string> Topic;
     std::unordered_map<std::string, Topic> _topics;
     std::unordered_map<std::string, std::unordered_map<std::string, std::unordered_map<int, int>>> _offsets;
     std::unordered_map<std::string, int> _partitionCounts;
@@ -17,17 +18,17 @@ class MessageManager {
   public:
     MessageManager(int maxPerTopic);
 
-    void appendMessage(const std::string& topic, const std::string& message, int partition);
+    // void appendMessage(const std::string& topic, const std::string& message, int partition);
 
-    std::string getNextMessage(const std::string& subscriberId, const std::string& topic, int partition);
+    // std::string getNextMessage(const std::string& subscriberId, const std::string& topic, int partition);
 
-    void commitOffset(const std::string& subscriber, const std::string& topic);
+    // void commitOffset(const std::string& subscriber, const std::string& topic);
 
-    std::vector<int> getPartitionAssignments(const std::string& subscriber, const std::string& topic);
+    // std::vector<int> getPartitionAssignments(const std::string& subscriber, const std::string& topic);
 
-    void registerSubscriber(const std::string& subscriber);
+    void registerMessageConsumer(const std::string &consumer);
     
-    void rebalance();
+    // void rebalance();
     
 };
 
