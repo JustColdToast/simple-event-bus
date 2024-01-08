@@ -1,6 +1,6 @@
 # Compiler and flags
 CXX := g++
-CXXFLAGS := -std=c++20 -g -Wextra -Wall
+CXXFLAGS := -std=c++20 -g -Wextra -Wall 
 LDFLAGS := -L/opt/homebrew/lib -lssl -lcrypto
 
 # Directories

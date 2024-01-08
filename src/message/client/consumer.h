@@ -1,7 +1,7 @@
 #ifndef SEB_M_CONSUMER
 #define SEB_M_CONSUMER
 
-#include "server/manager.h"
+#include "message/server/manager.h"
 #include <boost/uuid/uuid.hpp>
 
 class MessageConsumer {
