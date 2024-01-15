@@ -3,10 +3,7 @@
 #include <boost/uuid/random_generator.hpp>
 #include <boost/uuid/uuid_io.hpp>
 
-MessageConsumer::MessageConsumer(MessageManager &manager) : manager(manager) {
-    id = boost::uuids::random_generator()();
-    manager.registerMessageConsumer(boost::uuids::to_string(id));
-}
+MessageConsumer::MessageConsumer(TCP_Connection *connection) : id{boost::uuids::random_generator()()}, connection(connection) {}
 
 // void MessageConsumer::poll(const std::string& topic) {
 //     std::vector<int> partitions = manager_.getPartitionAssignments(boost::uuids::to_string(_id), topic);

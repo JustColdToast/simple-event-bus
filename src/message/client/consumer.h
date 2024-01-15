@@ -2,14 +2,17 @@
 #define SEB_M_CONSUMER
 
 #include "message/server/manager.h"
+#include <connection/tcp_connection.h>
 #include <boost/uuid/uuid.hpp>
 
 class MessageConsumer {
-    MessageManager &manager;
-    boost::uuids::uuid id;
+    const boost::uuids::uuid id;
+    const TCP_Connection *connection;
+    MessageManager *manager = nullptr;
 
   public:
-    MessageConsumer(MessageManager &manager);
+    MessageConsumer(TCP_Connection *connection);
+    // MessageConsumer(MessageManager &manager);
 
     // void poll(const std::string& topic);
     

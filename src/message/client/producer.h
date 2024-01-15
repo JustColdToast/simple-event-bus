@@ -3,11 +3,12 @@
 
 #include <message/server/manager.h>
 #include <connection/tcp_connection.h>
+#include <boost/uuid/uuid.hpp>
 
 class MessageProducer {
+    const boost::uuids::uuid id;
     const TCP_Connection *connection;
-    const MessageManager *manager = nullptr;
-    
+    MessageManager *manager = nullptr;
     
 public:
     MessageProducer(TCP_Connection *connection);
