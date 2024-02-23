@@ -1,6 +1,8 @@
 #include "manager.h"
 
-MessageManager::MessageManager(int maxPerTopic) : _maxCapacity(maxPerTopic) {}
+MessageManager::MessageManager() {}
+
+MessageManager::MessageManager(unsigned int id): id{id} {}
 
 // void MessageManager::appendMessage(const std::string& topic, const std::string& message, int partition) {
 //     _topics[topic].append(message, partition);

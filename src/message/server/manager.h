@@ -6,17 +6,17 @@
 #include <string>
 #include <map>
 #include <boost/asio.hpp>
+#include <data/partition.h>
+#include <data/topic.h>
+#include <boost/uuid/uuid.hpp>
 
 class MessageManager {
-    int _maxCapacity;
-    typedef std::vector<std::string> Topic;
-    std::unordered_map<std::string, Topic> _topics;
-    std::unordered_map<std::string, std::unordered_map<std::string, std::unordered_map<int, int>>> _offsets;
-    std::unordered_map<std::string, int> _partitionCounts;
-    std::unordered_map<std::string, std::unordered_map<std::string, std::vector<int>>> _partitionAssignments;
+    unsigned int id = 0;
+    std::unordered_map<Topic::TopicName, Topic> topics;
 
-  public:
-    MessageManager(int maxPerTopic);
+    public:
+      MessageManager();
+      MessageManager(unsigned int id);
 
     // void appendMessage(const std::string& topic, const std::string& message, int partition);
 
