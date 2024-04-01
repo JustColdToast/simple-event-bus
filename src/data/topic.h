@@ -2,7 +2,7 @@
 #define SEB_S_TOPIC
 
 #include <data/partition.h>
-#include <string.h>
+#include <string>
 
 /*
 A topic represents a collection of messages that are logically related, seperated into partitions.
@@ -12,10 +12,12 @@ class Topic {
     std::vector<Partition> partitions;
 
   public:
-    typedef std::string TopicName; 
+    typedef std::string TopicName;
+    Topic(std::string name, unsigned int partitionCount);
+
+    void append(const std::string& message, int partition);
+    std::string read(int partition, int idx);
     
-
-
 };
 
 

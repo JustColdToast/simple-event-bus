@@ -1,7 +1,7 @@
 # Compiler and flags
 CXX := g++
-CXXFLAGS := -std=c++20 -g -Wextra -Wall 
-LDFLAGS := -L/opt/homebrew/lib -lssl -lcrypto
+CXXFLAGS := -std=c++20 -g -Wextra -Wall
+LDFLAGS := -I/opt/homebrew/include -L/opt/homebrew/lib -lssl -lcrypto -lboost_context-mt
 
 # Directories
 SRC_DIR := ./src

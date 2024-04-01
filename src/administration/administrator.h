@@ -5,8 +5,6 @@
 #include <boost/asio.hpp>
 #include <iostream>
 
-// TODO: Figure out if binary_semaphore::acquire() has spurious wakeup
-// TODO: Figure out if binary_semaphore::release() is a signal_one or signal_all
 
 /*
 The Administrator is responsible for orchestrating workers across the SEB. It's primary responsibility is to choose what type of work
