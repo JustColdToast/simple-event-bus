@@ -3,9 +3,10 @@
 #include <assert.h>
 #include "work.h"
 #include "constants.h"
+#include <jobs/accept-connection-job.h>
 
 
-Administrator::Administrator(): processor_count{std::thread::hardware_concurrency()} {}
+Administrator::Administrator(): processor_count{2} {}
 
 void Administrator::efficient_mode() {
     assert(false); // Unimplemented
@@ -35,7 +36,7 @@ bool Administrator::is_connection_slot_available() {
 
 void Administrator::operator()() {
     // Start of Administrator mainLoop;
-    if (processor_count <= 2) { efficient_mode(); }
+    // if (processor_count <= 2) { efficient_mode(); }
 
     boost::asio::io_context context;
     // set guard for context to stop it from hitting stop state
@@ -44,13 +45,24 @@ void Administrator::operator()() {
 
     // Set up acceptors and endpoint
     ip::tcp::endpoint base_endpoint(ip::tcp::v4(), ACCEPT_BASE_PORT);
-    ip::tcp::acceptor acceptor(context, base_endpoint);
+    boost::asio::strand accept_strand = boost::asio::make_strand(context);
+    ip::tcp::acceptor acceptor(accept_strand, base_endpoint);
+    acceptor.set_option(boost::asio::ip::tcp::acceptor::reuse_address(true));
+
+    // Set up AcceptConnectionJob
+    AcceptConnectionJob accept_job(this, p_context, &acceptor);
+    // AcceptConnectionJob accept_job2(this, p_context, &acceptor);
+    // AcceptConnectionJob accept_job3(this, p_context, &acceptor);
 
     // Set up threads
     std::thread threads[processor_count - 1];   
     for (unsigned int i = 0; i < processor_count - 1; i++) {
         threads[i] = std::thread(Worker(i, *this));
     }
+
+    accept_job.dispatch();
+    // accept_job2.dispatch();
+    // accept_job3.dispatch();
 
     // Set up mainloop
     for (;;) {
@@ -65,9 +77,7 @@ void Administrator::operator()() {
             */
         //    std::cout << "dispatching" << std::endl;
            stats.open_accept_handlers++;
-            boost::asio::dispatch(
-                context,
-                std::bind(seb::tcp::accept_connection, this, &acceptor, p_context));
+            //   accept_job.dispatch();
         }
     }
 

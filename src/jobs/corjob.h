@@ -17,5 +17,9 @@ class CorJob {
     CorJob();
     ~CorJob();
 
+    // CorJob() Accesses Coroutine mainloop
     void operator()();
+
+    // handler acts as an explicit function serving same purpose as operator()
+    CorJob::coro_t::pull_type* handler();
 };

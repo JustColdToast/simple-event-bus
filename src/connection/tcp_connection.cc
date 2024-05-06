@@ -12,7 +12,7 @@ TCP_Connection::TCP_Connection(io_context &context):
 }
 
 TCP_Connection::~TCP_Connection() {
-    std::cout << "tcpDesteuct" << std::endl;
+    std::cout << "tcpDestruct" << std::endl;
     buffer.clear();
 }
 

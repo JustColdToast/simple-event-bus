@@ -16,6 +16,5 @@ int main() {
     unsigned int processors = std::thread::hardware_concurrency(); // get logical processor count
     std::cout << "count: " << processors << std::endl;
     Administrator admin{};
-    std::thread t_admin(std::ref(admin));
-    t_admin.join();
+    admin();
 }
