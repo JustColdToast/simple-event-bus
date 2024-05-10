@@ -5,4 +5,5 @@ RUN apk update && apk add --no-cache \
     build-base \
     gdb \
     git \
+    openssh \
     boost-dev
