@@ -2,7 +2,9 @@
     "build": { "dockerfile": "Dockerfile" },
     "customizations": {
       "vscode": {
-        "extensions": ["dbaeumer.vscode-eslint"]
+        "extensions": [
+            "ms-vscode.cpptools-extension-pack"
+        ]
       }
     },
     "mounts": [
